@@ -18,7 +18,7 @@ $(function() {
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url:'/ajax/search-customer',
+        url:'/imaisetsubi/quotation/public/ajax/search-customer',
         type:'GET',
         data:{
           "keyword": keyword
@@ -54,7 +54,7 @@ $(function() {
           headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
-          url:'/ajax/search-customer',
+          url:'/imaisetsubi/quotation/public/ajax/search-customer',
           type:'GET',
           data:{
             "keyword": keyword2
@@ -103,7 +103,7 @@ $(function() {
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url:'/ajax/search-quotation',
+            url:'/imaisetsubi/quotation/public/ajax/search-quotation',
             type:'GET',
             data:{
               "keyword": keyword
@@ -139,7 +139,7 @@ $(function() {
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url:'/ajax/search-quotation-detail',
+            url:'/imaisetsubi/quotation/public/ajax/search-quotation-detail',
             type:'GET',
             data:{
               "keyword": quotation_id
@@ -563,7 +563,7 @@ $(function() {
               headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
               },
-              url:'/ajax/sort-quotation',
+              url:'/imaisetsubi/quotation/public/ajax/sort-quotation',
               type:'post',
               timeout: 15000,
               data: arr2,
