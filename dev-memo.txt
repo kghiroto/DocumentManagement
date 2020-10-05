@@ -1,0 +1,3 @@
+PDF の日本語対応の仕方
+  - http://reffect.co.jp/blog/post/laravel-dompdf70-japanese
+  - 別のfont を追加する場合も同じ手順でいけると思う

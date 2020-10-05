@@ -1,0 +1,287 @@
+@charset "UTF-8";
+
+// ベースカラー
+$base-color: #202040;
+
+// アクセントカラー
+$accent-color: #00BFFF;
+
+// ポイントカラー
+$point-color: #EE8A1E;
+
+// ホワイト
+$white: #ffffff;
+
+// ブラック
+.black{
+	color: #272121;
+}
+
+
+html {/* 適宜変更 */
+	position: relative;
+	width: 100%;
+	height: 100%;
+	min-height:100%;
+	overflow-x: hidden;
+	margin: 0 auto;
+	background-color: #353535;
+	line-height: 1.5;
+	font-size: 62.5%;
+	color: #333333;
+	font-weight: 300;
+	text-align: justify;
+	word-wrap: break-word;
+	font-feature-settings: "palt";
+	letter-spacing: 0.05em;
+	font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic",'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+
+
+
+
+.wrapper{
+	width: 100%;
+	height: 100%;
+	padding: 60px 5%;
+	.contain{
+		display: block;
+		background-color: #ffffff;
+		width: 724px;
+// 		height: 1024px;
+		height: auto;
+		margin: 0 auto;
+		padding: 40px 60px;
+		.temp_info{
+			position: relative;
+			h1{
+				font-size: 2.6rem;
+				text-align: center;
+			}
+			.number{
+				position: absolute;
+				top:0;
+				right: 0;
+				p{
+					text-align: right;
+					font-size: 1.2rem;
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
+.info_con{
+	margin: 35px 0 20px 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	.info_con_l{
+		width: 50%;
+		margin-right: 5%;
+		.name{
+			width: 100%;
+			border-bottom: 2px solid #4f4f4f;
+			display: flex;
+			justify-content: space-between;
+			h2{
+				font-size: 1.7rem;
+			}
+			h3{
+				font-size: 1.7rem;
+				text-align: right;
+			}
+		}
+		.note{
+			margin: 15px 0;
+			p{
+				font-size: 1.1rem;
+			}
+		}
+		.info_data{
+			margin-top: 7px;
+			display: flex;
+			justify-content: space-between;
+			.info_data_l{
+				width: 20%;
+				margin-right: 5%;
+				p{
+					font-size: 1.3rem;
+				}
+			}
+			.info_data_r{
+				width: 75%;
+				border-bottom: 1px solid #777777;
+				h4{
+					font-size: 1.3rem;
+				}
+			}
+		}
+	}
+	.info_con_r{
+		width: 45%;
+		h3{
+			font-size: 1.6rem;
+			text-align: right;
+		}
+		h4{
+			font-size: 1.4rem;
+			text-align: right;
+		}
+		.comp_data{
+			margin-top: 10px;
+			p{
+				font-size: 1.2rem;
+				text-align: right;
+			}
+			.transfer{
+				margin-top: 10px;
+				p{
+					font-size: 1.15rem;
+				}
+			}
+		}
+	}
+}
+
+
+
+.money{
+	width: 100%;
+	display: flex;
+	align-items: flex-end;
+	.tax_in{
+		width: 50%;
+		border-bottom:1px solid #4f4f4f;
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		h5{
+			font-size: 1.7rem;
+		}
+		p{
+			font-size: 1.8rem;
+			font-weight: 600;
+		}
+	}
+	.tax{
+		width: 35%;
+		margin-left: 15%;
+		border-bottom:1px solid #4f4f4f;
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		h5{
+			font-size: 1.5rem;
+		}
+		p{
+			font-size: 1.6rem;
+			font-weight: 600;
+		}
+	}
+}
+
+
+
+
+
+.temp_details{
+	margin-top: 30px;
+	table {
+		border-collapse: collapse;
+		margin: 0 auto;
+		padding: 0;
+		width: 100%;
+		tr{
+			background-color: #ffffff;
+			border: 1px solid #9b9b9b;
+			th,td{
+				font-size: 1.2rem;
+				padding: 5px 8px;
+				border-right: 1px solid #9b9b9b;
+				height: 25px;
+			}
+			th{
+				width: 5%;
+				text-align: right;
+			}
+		}
+		thead{
+			tr{
+				background-color: #D2EAF8;
+				td{
+					font-size: 1.3rem;
+					text-align: center;
+					font-weight: 600;
+				}
+			}
+		}
+		tbody{
+			tr{
+				td{
+					&:nth-child(2){
+						width: 35%;
+					}
+					&:nth-child(3){
+						width: 10%;
+					}
+					&:nth-child(4){
+						width: 10%;
+					}
+					&:nth-child(5){
+						width: 15%;
+					}
+					&:nth-child(6){
+						width: 15%;
+					}
+					&:nth-child(7){
+						width: 10%;
+					}
+				}
+			}
+		}
+		.a_right{
+			text-align: right;
+		}
+	}
+	.moment{
+		margin-top: 10px;
+		.moment_con{
+			width: 50%;
+			border-bottom:1px solid #4f4f4f;
+			display: flex;
+			justify-content: space-between;
+			align-items: baseline;
+			margin: 5px 10% 0 auto;
+			h5{
+				font-size: 1.3rem;
+			}
+			p{
+				font-size: 1.5rem;
+				font-weight: 600;
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

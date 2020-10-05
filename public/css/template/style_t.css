@@ -1,0 +1,233 @@
+@charset "UTF-8";
+.black {
+  color: #272121;
+}
+
+html {
+  /* 適宜変更 */
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  margin: 0 auto;
+  background-color: #353535;
+  line-height: 1.5;
+  font-size: 62.5%;
+  color: #333333;
+  font-weight: 300;
+  text-align: justify;
+  word-wrap: break-word;
+  font-feature-settings: "palt";
+  letter-spacing: 0.05em;
+  font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 60px 5%;
+}
+.wrapper .contain {
+  display: block;
+  background-color: #ffffff;
+  width: 724px;
+  height: auto;
+  margin: 0 auto;
+  padding: 40px 60px;
+}
+.wrapper .contain .temp_info {
+  position: relative;
+}
+.wrapper .contain .temp_info h1 {
+  font-size: 2.6rem;
+  text-align: center;
+}
+.wrapper .contain .temp_info .number {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.wrapper .contain .temp_info .number p {
+  text-align: right;
+  font-size: 1.2rem;
+}
+
+.info_con {
+  margin: 35px 0 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.info_con .info_con_l {
+  width: 50%;
+  margin-right: 5%;
+}
+.info_con .info_con_l .name {
+  width: 100%;
+  border-bottom: 2px solid #4f4f4f;
+  display: flex;
+  justify-content: space-between;
+}
+.info_con .info_con_l .name h2 {
+  font-size: 1.7rem;
+}
+.info_con .info_con_l .name h3 {
+  font-size: 1.7rem;
+  text-align: right;
+}
+.info_con .info_con_l .note {
+  margin: 15px 0;
+}
+.info_con .info_con_l .note p {
+  font-size: 1.1rem;
+}
+.info_con .info_con_l .info_data {
+  margin-top: 7px;
+  display: flex;
+  justify-content: space-between;
+}
+.info_con .info_con_l .info_data .info_data_l {
+  width: 20%;
+  margin-right: 5%;
+}
+.info_con .info_con_l .info_data .info_data_l p {
+  font-size: 1.3rem;
+}
+.info_con .info_con_l .info_data .info_data_r {
+  width: 75%;
+  border-bottom: 1px solid #777777;
+}
+.info_con .info_con_l .info_data .info_data_r h4 {
+  font-size: 1.3rem;
+}
+.info_con .info_con_r {
+  width: 45%;
+}
+.info_con .info_con_r h3 {
+  font-size: 1.6rem;
+  text-align: right;
+}
+.info_con .info_con_r h4 {
+  font-size: 1.4rem;
+  text-align: right;
+}
+.info_con .info_con_r .comp_data {
+  margin-top: 10px;
+}
+.info_con .info_con_r .comp_data p {
+  font-size: 1.2rem;
+  text-align: right;
+}
+.info_con .info_con_r .comp_data .transfer {
+  margin-top: 10px;
+}
+.info_con .info_con_r .comp_data .transfer p {
+  font-size: 1.15rem;
+}
+
+.money {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+.money .tax_in {
+  width: 50%;
+  border-bottom: 1px solid #4f4f4f;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.money .tax_in h5 {
+  font-size: 1.7rem;
+}
+.money .tax_in p {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.money .tax {
+  width: 35%;
+  margin-left: 15%;
+  border-bottom: 1px solid #4f4f4f;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.money .tax h5 {
+  font-size: 1.5rem;
+}
+.money .tax p {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.temp_details {
+  margin-top: 30px;
+}
+.temp_details table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+}
+.temp_details table tr {
+  background-color: #ffffff;
+  border: 1px solid #9b9b9b;
+}
+.temp_details table tr th, .temp_details table tr td {
+  font-size: 1.2rem;
+  padding: 5px 8px;
+  border-right: 1px solid #9b9b9b;
+  height: 25px;
+}
+.temp_details table tr th {
+  width: 5%;
+  text-align: left;
+}
+.temp_details table thead tr {
+  background-color: #D2EAF8;
+}
+.temp_details table thead tr td {
+  font-size: 1.3rem;
+  text-align: center;
+  font-weight: 600;
+}
+.temp_details table tbody tr td:nth-child(2) {
+  width: 35%;
+}
+.temp_details table tbody tr td:nth-child(3) {
+  width: 10%;
+}
+.temp_details table tbody tr td:nth-child(4) {
+  width: 10%;
+}
+.temp_details table tbody tr td:nth-child(5) {
+  width: 15%;
+}
+.temp_details table tbody tr td:nth-child(6) {
+  width: 15%;
+}
+.temp_details table tbody tr td:nth-child(7) {
+  width: 10%;
+}
+.temp_details table .a_right {
+  text-align: right;
+}
+.temp_details .moment {
+  margin-top: 10px;
+}
+.temp_details .moment .moment_con {
+  width: 50%;
+  border-bottom: 1px solid #4f4f4f;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 5px 10% 0 auto;
+}
+.temp_details .moment .moment_con h5 {
+  font-size: 1.3rem;
+}
+.temp_details .moment .moment_con p {
+  font-size: 1.5rem;
+  font-weight: 600;
+}

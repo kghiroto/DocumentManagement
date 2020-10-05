@@ -1,0 +1,199 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use App\Quotation;
+use App\Customer;
+use DB;
+
+class QuotationController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+    }
+
+    public function sumChildren($hier, $data) {
+        $sum = 0;
+        foreach ($data as $value) {
+            if ($value->folder == false) {
+                $needle = $hier . ".";
+                if (0 === strpos($value->hier, $needle)) {
+                    $sum += $value->sum;
+                }
+            }
+        }
+        return $sum;
+
+    }
+
+    public function show(Request $request, $id)
+    {
+        $quotation = Quotation::find($id);
+
+        // 各行の計算
+        foreach ($quotation->quotationDetails as &$value) {
+            $value->sum = $value->quantity * $value->price;
+        }
+
+        // フォルダの計算
+        $tmp = $quotation->quotationDetails;
+        foreach ($quotation->quotationDetails as &$value) {
+            if ($value->folder == true) {
+                $value->sum = $this->sumChildren($value->hier, $tmp);
+            }
+        }
+
+        return view('quotation.show', compact('quotation'));
+    }
+
+    public function showList(Request $request)
+    {
+        $quotations = Quotation::paginate(config('const.row_count_per_page'));
+		$customer_options = Customer::all()->pluck('name', 'id')->toArray();
+
+        return view('quotation.list', compact('quotations', 'customer_options'));
+    }
+
+    public function createInput(Request $request)
+    {
+		$unit_options = config('const.unit_options');
+		$customer_options = Customer::all()->pluck('name', 'id')->toArray();
+
+        return view('quotation.create-input', compact('unit_options', 'customer_options'));
+    }
+
+    public function makeFancyJson($quotationDetails) {
+        $getParentId = function ($hier) {
+            preg_match('/(.*)\.(.*)/', $hier, $matches, PREG_OFFSET_CAPTURE);
+            if ($matches == []) {
+                return [];
+            }else {
+                return $matches[1][0];
+            }
+        };
+        // parent_id を設定する
+        foreach ($quotationDetails as  &$value) {
+            $value['parent_id'] = $getParentId($value['hier']);
+        }
+        $temp = [];
+        //foreach ($quotationDetails as $value) {
+        //    if ($value['parent_id'] != []) {
+        //        $temp[$value['parent_id']][] = $value;
+        //    }
+        //}
+
+        var_dump($quotationDetails);
+        //var_dump($temp);
+    }
+
+	public function editInput(Request $request, $id)
+    {
+		$unit_options = config('const.unit_options');
+		$customer_options = Customer::all()->pluck('name', 'id')->toArray();
+		$quotation = Quotation::find($id);
+        $quotationDetails = $quotation->quotationDetails()->get()->toArray();
+        $this->makeFancyJson($quotationDetails);
+//var_dump(json_encode( $quotation->toArray() , JSON_UNESCAPED_UNICODE) );
+exit;
+
+        return view('quotation.create-input', compact('unit_options', 'customer_options', 'quotation'));
+    }
+    public function save(Request $request)
+    {
+        $quotationDetails = $request->get('quotation_details');
+        $quotationDetails = json_decode($quotationDetails, true);
+
+		DB::beginTransaction();
+    	try{
+    	    $quotation = new Quotation($request->all());
+    	    $quotation->save();
+    	    $quotation->quotationDetails()->createMany($quotationDetails);
+    	}catch(Exception $e){
+    	    DB::rollback();
+			// エラー時にどうするか考える
+    	    return back()->withInput();
+    	}
+    	DB::commit();
+
+		// ブラウザリロード等での二重送信防止
+        $request->session()->regenerateToken();
+
+		return redirect('quotation/show/' . $quotation->id)->with('message', '保存しました');
+    }
+
+    public function showPdf(Request $request, $id)
+    {
+        //var_dump($id);
+        $quotation = [];
+
+        //$pdf = \Barryvdh\DomPDF::loadView('quotation.pdf', compact('quotataion'));
+        $pdf = \PDF::loadView('quotation.pdf', compact('quotataion'));
+        return $pdf->stream();
+        //return $pdf->download();
+        //return view('quotation.pdf');
+    }
+    /*
+    public function postCreateConfirm(Requests\PasswordCreateRequest $request)
+    {
+        // 戻るボタンの処理
+        if ($request->get('from') == "confirm") {
+            return redirect('password/create-input')->withInput();
+        }
+
+        $password = $request->all();
+        return view('password.create-confirm', ['password' => $password]);
+    }
+
+    public function postCreateFinish(Requests\PasswordCreateRequest $request)
+    {
+        $password = $request->all();
+        $password['lesson_start_at'] = $password['lesson_start_date'] . ' ' . $password['lesson_start_time']; // つなげる 
+        $password['url_key'] = Password::generateUrlKey();
+
+        Password::create($password);
+
+        // ブラウザリロード等での二重送信防止
+        $request->session()->regenerateToken();
+        return view('password.create-finish', []);
+    }
+
+    public function getEditInput(Request $request, $id)
+    {
+        // ミドルウェアでキーワードデータに対する認可設定を作る @todo
+        $password = Password::getPasswordbyId($id);
+        list($lessonStartDate, $lessonStartTime) =  explode(' ', $password->lesson_start_at);
+        $password->lesson_start_date = $lessonStartDate; 
+        $password->lesson_start_time = substr($lessonStartTime, 0, strlen($lessonStartTime) - 3);
+        return view('password.edit-input', ['password' => $password]);
+    }
+
+    public function postEditConfirm(Requests\PasswordEditRequest $request)
+    {
+        // 戻るボタンの処理
+        if ($request->get('from') == "confirm") {
+            return redirect()->route('password/edit-input', ['id' => $request->get('id')])->withInput();
+        }
+
+        $password = $request->all();
+        return view('password.edit-confirm', ['password' => $password]);
+    }
+
+    public function postEditFinish(Requests\PasswordEditRequest $request)
+    {
+        $password = $request->all();
+        $password['lesson_start_at'] = $password['lesson_start_date'] . ' ' . $password['lesson_start_time']; // つなげる
+        Password::find($password['id'])->fill($password)->save();
+        // ブラウザリロード等での二重送信防止
+        $request->session()->regenerateToken();
+        return view('password.edit-finish', []);
+    }
+    */
+}
